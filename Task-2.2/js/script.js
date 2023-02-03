@@ -12,7 +12,6 @@ const allKhachapuri = document.querySelectorAll('#khachapuri')
 const allDesserts = document.querySelectorAll('#dessert')
 
 
-
 function unPack (arr) {
     let res = ''
     for (let i = 0; i < arr.length; i++) {
@@ -20,8 +19,6 @@ function unPack (arr) {
     }
     return res
 }
-
-
 
 
 all.onclick = () => {
