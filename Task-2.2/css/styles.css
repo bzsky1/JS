@@ -38,6 +38,11 @@ body {
   width: 28vw;
 }
 
+.active {
+  background-color: rgb(205, 154, 66);
+  color: #fff8ee;
+}
+
 .header__link {
   border: 3px solid rgb(205, 154, 66);
   padding: 4px 10px;
@@ -57,7 +62,7 @@ body {
   grid-template: 1fr/repeat(2, 48%);
   grid-auto-flow: row;
   gap: 2%;
-  row-gap: 5%;
+  row-gap: 10.4vh;
 }
 
 .item__row {
