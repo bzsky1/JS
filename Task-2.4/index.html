@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <title>Create Account</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="form">
+            <form action="#" method="post" enctype="multipart/form-data"  id="form">
+                <div class="top">
+                    <h1>Create Account</h1>
+                </div>
+                <div class="main">
+                    <div class="names-input">
+                        <div class="fn">
+                            <div class="fn__input-title input-title">First name*</div>
+                            <div class="fn__input">
+                                <input tabindex="1" type="text" placeholder="enter your first name" value="" class="_req _name">
+                                <div class="error-text">
+                                    The first name must not be less than 3 characters and must not contain spaces!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ln">
+                            <div class="ln__input-title input-title">Last name*</div>
+                            <div class="ln__input">
+                                <input tabindex="2" type="text" placeholder="enter your last name" value="" class="_req _name">
+                                <div class="error-text">
+                                    The last name must not be less than 3 characters and must not contain spaces!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="email">
+                        <div class="email__input-title input-title">Email*</div>
+                        <div class="email__input">
+                            <input tabindex="3" type="email" placeholder="enter your email" value="" class="_req _email">
+                            <div class="error-text">
+                                Please, enter your email address!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="password-bl">
+                        <div class="password">
+                            <div class="password__input-title input-title">Password*</div>
+                            <div class="password__input">
+                                <input tabindex="4" type="password" placeholder="enter your password" value="" class="_req _pass">
+                                <div class="error-text">
+                                    The password must be at least 6 characters long and must not contain spaces!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="confirm-password">
+                            <div class="confirm-password__input-title input-title">Confirm Password*</div>
+                            <div class="confirm-password__input">
+                                <input tabindex="5" type="password" placeholder="enter your password again" value="" class="_req _conf">
+                                <div class="error-text">
+                                    Please, confirm your password!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gen-hob">
+                        <div class="gender">
+                            <div class="gender__input-title input-title">
+                                Gender:
+                            </div>
+                            <div class="gender__input">
+                                <input tabindex="6" type="radio" id="male" name="gender" value="Male"> <span>Male</span>
+                                <input tabindex="6" type="radio" name="gender" id="female" value="Female"> <span>Female</span>
+                            </div>
+                        </div>
+                        <div class="hobbies">
+                            <div class="hobbies__input-title input-title">
+                                Hobbies
+                            </div>
+                            <div class="hobbies__input">
+                                <input tabindex="7" type="checkbox" name="music" id="hobbie1" value="Music"><span>Music</span>
+                                <input tabindex="8" type="checkbox" name="sports" id="hobbie2" value="Sports"><span>Sports</span>
+                                <input tabindex="9" type="checkbox" name="travel" id="hobbie3" value="Travel"><span>Travel</span>
+                                <input tabindex="10" type="checkbox" name="movies" id="hobbie4" value="Movies"><span>Movies</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="income">
+                        <div class="source">
+                            <div class="source__input-title input-title">
+                                Source of Income
+                            </div>
+                            <div class="source__input">
+                                <select tabindex="11" name="source">
+                                    <option value="employed">Employed</option>
+                                    <option value="part-time">Part time</option>
+                                    <option value="unemployed">Unemployed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="income-am">
+                            <div class="income-am__input-title input-title">
+                                Income
+                            </div>
+                            <div class="income-am__input">
+                                <input tabindex="12" type="range" id="amount" name="amount" min="0" step="100" max="20000" oninput="fun1()"><div class="income-am__txt" id="res">20K</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pic-age">
+                        <div class="picture">
+                            <div class="picture__input-title input-title">
+                                Upload Profile Picture
+                            </div>
+                            <div class="picture__input">
+                                <input tabindex="13" type="file" name="photo">
+                            </div>
+                        </div>
+                        <div class="age">
+                            <div class="age__input-title input-title">
+                                Age
+                            </div>
+                            <div class="age__input">
+                                <input tabindex="14" type="number" id="age" name="age" min="17" max="119" value="17">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bio">
+                        <div class="bio__input-title input-title">
+                            Bio
+                        </div>
+                        <div class="bio__input">
+                            <textarea tabindex="15" name="bio" id="bio"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="bottom__button">
+                        <button tabindex="16" type="submit">Create</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

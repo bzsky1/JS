@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+
+$gr:rgb(95, 95, 95);
+$pr:rgb(146, 37, 210);
+$dp:rgb(100, 0, 128);
+$border:1px solid rgb(162, 162, 162);
+
+
+* {
+    margin: 0;
+}
+
+
+body {
+    background-color: rgb(89, 74, 104);
+    color: $gr;
+    font-family: 'Roboto', sans-serif;
+}
+
+input, textarea, select {
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 3px;
+    line-height: 20px;
+
+
+    &:hover {
+        border: 1px solid $dp;
+    }
+
+    &:focus {
+        border: 1px solid $dp;
+    }
+
+
+    &::-webkit-input-placeholder { /* WebKit browsers */
+        color:    rgb(200, 200, 200);
+        padding-left: 5px;
+        }
+    &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color:    rgb(200, 200, 200);
+        }
+    &::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color:    rgb(200, 200, 200);
+        }
+    &:-ms-input-placeholder { /* Internet Explorer 10+ */
+        color:    rgb(200, 200, 200);
+        }
+}
+
+
+.wrapper {
+    background-color: rgb(235, 235, 235);
+    margin: 40px auto;
+    width: 500px;
+    border-radius: 10px;
+}
+
+
+.top {
+    padding: 15px 0;
+    text-align: center;
+
+    h1 {
+     font-size: 24px;
+     font-weight: 500;   
+    }
+}
+
+
+.main {
+    padding: 20px 30px;
+    font-size: 14px;
+    font-weight: 500;
+    border-top: 1px solid rgb(211, 211, 211);
+    border-bottom: 1px solid rgb(211, 211, 211);
+    background-color: rgb(250, 250, 250);
+}
+
+
+.names-input, .email, .password-bl, .gen-hob, .income, .pic-age {
+    margin-bottom: 15px;
+}
+
+
+.input-title {
+    color: $pr;
+}
+
+
+.names-input {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.fn__input {
+    input[type=text] {
+        width: 210px;
+    }
+}
+
+
+.ln__input {
+    input[type=text] {
+        width: 210px;
+    }
+}
+
+
+.email__input {
+    input[type=email] {
+        width: 435px;
+    }
+}
+
+
+.password-bl {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.password__input {
+    input[type=password] {
+        width: 210px;
+    }
+}
+
+
+.confirm-password__input {
+    input[type=password] {
+        width: 210px;
+    }
+}
+
+
+.gen-hob {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.gender__input {
+    span {
+        font-weight: 400;
+        font-size: 14px;
+        letter-spacing: -0.5px;
+        margin-right: 5px;
+    }
+}
+
+
+.hobbies__input {
+    width: 215px;
+    span {
+        font-weight: 400;
+        font-size: 14px;
+        letter-spacing: -0.5px;
+    }
+}
+
+
+.income {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.source {
+    select {
+        width: 215px;
+        height: 25px;
+    }
+}
+
+.income-am {
+    position: relative;
+
+    .income-am__input-title {
+        position: relative;
+        right: 35px;
+
+    }
+}
+
+
+
+.income-am__input {
+    display: flex;
+    right: 37px;
+    position: relative;
+
+    .income-am__txt {
+        position: absolute;
+        left: 175px;
+        background-color: $dp;
+        color: white;
+        min-width: 30px;
+        border-radius: 3px;
+        padding: 5px;
+        padding-right: 7px;
+        text-align: center;
+    }
+
+    input[type=range] {
+        width: 173px;
+        margin-right: 3px;
+    }
+}
+
+
+.pic-age {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.picture__input {
+    input[type=file] {
+        width: 215px;
+        font-size: 11px;
+    }
+}
+
+
+.age__input {
+    input[type=number] {
+        width: 205px;
+    }
+}
+
+
+.bio__input {
+
+    textarea {
+        width: 435px;
+        height: 60px;
+    }
+}
+
+
+.bottom {
+    display: flex;
+    justify-content: end;
+}
+
+
+.bottom__button {
+    margin: 10px 30px 10px 0;
+
+    button {
+        height: 30px;
+        width: 80px;
+        border-radius: 5px;
+        border: 0px;
+        bottom: 0px;
+        color: rgb(228, 170, 252);
+        position: relative;
+        transition-duration: 0.7s;
+        background-color: $dp;
+
+        &:hover {
+            color: white;
+            bottom: 3px;
+            box-shadow: 0 3px 0px rgb(57, 4, 88);
+            background-color: rgb(137, 8, 172);
+        }
+
+        &:active {
+            box-shadow: 0 1px 0px rgb(57, 4, 88);
+            transform: translateY(2px);
+            transition-duration: 0s;
+        }
+    }
+}
