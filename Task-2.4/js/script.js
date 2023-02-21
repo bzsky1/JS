@@ -22,88 +22,84 @@ class Validator {
   }
 
 
-  init() {
-    this.vOnSubm()
-    this.vOnEnt()
+  init = () => {
+    this.onSubmit()
+    this.onEntry()
   }
 
 
-  vOnSubm() {
-    let self = this
-
-    this.form.addEventListener('submit', function(e) {
+  onSubmit = () => {
+    this.form.addEventListener('submit',(e) => {
       e.preventDefault()
-      self.fields.forEach(function (field) {
+      this.fields.forEach((field) => {
         const input = document.querySelector(`._${field}`)
-        self.vField(input)
+        this.validateField(input)
       })
 
     })
   }
 
 
-  vOnEnt() {
-    let self = this
-    this.fields.forEach(function(field) {
+  onEntry = () => {
+    this.fields.forEach((field) => {
       const input = document.querySelector(`._${field}`)
 
       input.addEventListener('input', () => {
-        self.vField(input)
+        this.validateField(input)
       })
     })
   }
 
 
-  vField(input) {
+  validateField = (input) => {
     this.hideError(input)
-    let self = this
 
     if (input.classList.contains('_email')) {
-      if (self.emailTest(input)) {
-        self.showError(input)
+      if (this.emailTest(input)) {
+        this.showError(input)
       } 
     } else if (input.classList.contains('_name')) {
       if (input.value.length < 3) {
-        self.showError(input)
+        this.showError(input)
       } else if (input.value.includes(' ')) {
-        self.showError(input)
+        this.showError(input)
       }
     } else if (input.classList.contains('_lname')) {
       if (input.value.length < 3) {
-        self.showError(input)
+        this.showError(input)
       } else if (input.value.includes(' ')) {
-        self.showError(input)
+        this.showError(input)
       }
     } else if (input.classList.contains('_pass')) {
       if (input.value.length < 6) {
-        self.showError(input)
+        this.showError(input)
       }else if (input.value.includes(' ')) {
-        self.showError(input)
+        this.showError(input)
       }
     } else if (input.classList.contains('_conf')) {
       const pass = document.querySelector('._pass')
       if (input.value !== pass.value) {
-        self.showError(input)
+        this.showError(input)
       } else if (input.value === '') {
-        self.showError(input)
+        this.showError(input)
       }
     } else {
       if (input.value === '') {
-        self.showError(input)
+        this.showError(input)
       }
     }
   }
  
 
-  showError(input) {
+  showError = (input) => {
     input.classList.add('error')
     input.nextElementSibling.classList.add('active')
   }
-  hideError(input) {
+  hideError = (input) => {
     input.classList.remove('error')
     input.nextElementSibling.classList.remove('active')
   }
-  emailTest(input) {
+  emailTest = (input) => {
     return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value)
   }
 }
@@ -113,5 +109,5 @@ const form = document.querySelector('#form')
 const fields = ['name', 'lname', 'email', 'pass', 'conf']
 
 
-const vForm = new Validator(form, fields)
-vForm.init()
+const validator = new Validator(form, fields)
+validator.init()
