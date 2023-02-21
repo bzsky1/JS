@@ -15,81 +15,103 @@ function fun1() {
 };
 
 
-document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('form')
-  form.addEventListener('submit', formSend)
-
-  async function formSend(e) {
-    e.preventDefault()
-
-    let error = formValidate(form)
-
-    if (error === 0) {
-      alert('Done!')
-    } else {
-      alert('Please fill in the required fields!')
-    }
+class Validator {
+  constructor(form, fields) {
+    this.form = form
+    this.fields = fields
   }
 
 
-  function formValidate(form) {
-    let error = 0
-    let formReq = document.querySelectorAll('._req')
+  init() {
+    this.vOnSubm()
+    this.vOnEnt()
+  }
 
-    for (let index = 0; index < formReq.length; index++) {
-      const input = formReq[index]
-      hideError(input)
 
-      if (input.classList.contains('_email')) {
-        if (emailTest(input)) {
-          showError(input)
-          error++
-        } 
-      } else if (input.classList.contains('_name')) {
-        if (input.value.length < 3) {
-          showError(input)
-          error++
-        } else if (input.value.includes(' ')) {
-          showError(input)
-          error++
-        }
-      } else if (input.classList.contains('_pass')) {
-        if (input.value.length < 6) {
-          showError(input)
-          error++
-        }else if (input.value.includes(' ')) {
-          showError(input)
-          error++
-        }
-      } else if (input.classList.contains('_conf')) {
-        const pass = document.querySelector('._pass')
-        if (input.value !== pass.value) {
-          showError(input)
-          error++
-        } else if (input.value === '') {
-          showError(input)
-          error++
-        }
-      } else {
-        if (input.value === '') {
-          showError(input)
-          error++
-        }
+  vOnSubm() {
+    let self = this
+
+    this.form.addEventListener('submit', function(e) {
+      e.preventDefault()
+      self.fields.forEach(function (field) {
+        const input = document.querySelector(`._${field}`)
+        self.vField(input)
+      })
+
+    })
+  }
+
+
+  vOnEnt() {
+    let self = this
+    this.fields.forEach(function(field) {
+      const input = document.querySelector(`._${field}`)
+
+      input.addEventListener('input', () => {
+        self.vField(input)
+      })
+    })
+  }
+
+
+  vField(input) {
+    this.hideError(input)
+    let self = this
+
+    if (input.classList.contains('_email')) {
+      if (self.emailTest(input)) {
+        self.showError(input)
+      } 
+    } else if (input.classList.contains('_name')) {
+      if (input.value.length < 3) {
+        self.showError(input)
+      } else if (input.value.includes(' ')) {
+        self.showError(input)
+      }
+    } else if (input.classList.contains('_lname')) {
+      if (input.value.length < 3) {
+        self.showError(input)
+      } else if (input.value.includes(' ')) {
+        self.showError(input)
+      }
+    } else if (input.classList.contains('_pass')) {
+      if (input.value.length < 6) {
+        self.showError(input)
+      }else if (input.value.includes(' ')) {
+        self.showError(input)
+      }
+    } else if (input.classList.contains('_conf')) {
+      const pass = document.querySelector('._pass')
+      if (input.value !== pass.value) {
+        self.showError(input)
+      } else if (input.value === '') {
+        self.showError(input)
+      }
+    } else {
+      if (input.value === '') {
+        self.showError(input)
       }
     }
-    return error
   }
+ 
 
-
-  function showError(input) {
+  showError(input) {
     input.classList.add('error')
     input.nextElementSibling.classList.add('active')
   }
-  function hideError(input) {
+  hideError(input) {
     input.classList.remove('error')
     input.nextElementSibling.classList.remove('active')
   }
-  function emailTest(input) {
+  emailTest(input) {
     return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value)
   }
-})
+}
+
+
+const form = document.querySelector('#form')
+const fields = ['name', 'lname', 'email', 'pass', 'conf']
+
+
+const vForm = new Validator(form, fields)
+vForm.init()
