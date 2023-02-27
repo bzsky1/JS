@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <title>Weather</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="city">
+            <div class="city__input-bl">
+                <form id="form">
+                    <input type="text" placeholder="Please, enter city" value="Kyiv" id="city" class="city__input">
+                    <input type="submit" id="submit" class="submit-button" value="Show">
+                </form>
+            </div>
+        </div>
+        <div class="widget">
+            <legend></legend>
+            <div class="widget__top">
+                <div class="widget__top-row">
+                    <div class="widget__dg-block">
+                        <div class="dg-group">
+                            <div class="widget__dg">-0&#176C</div>
+                            <div class="widget__fl">Feels like -2&#176C</div>
+                        </div>
+                        <img src="img/temperature.svg">
+                    </div>
+                    <div class="widget__state-block">
+                        <div class="widget__state">Cloudly</div>
+                        <div class="widget__city">Kyiv, Ukraine</div>
+                    </div>
+                    <div class="widget__img">
+                        <img src="img//few-clouds.svg" id="widgetImg">
+                    </div>
+                </div>
+            </div>
+            <div class="widget__days">
+                <div class="widget__column">
+                    <div class="widget__day day" id="day1">
+                        <div class="day__row">
+                            <div class="day__name">FRI</div>
+                            <div class="day__img">
+                                <img src="img/rain.svg" class="day__image">
+                            </div>
+                            <div class="day__state">Rain</div>
+                            <div class="day__dg">
+                                <div class="day__dg-group">
+                                    <div class="day__daytime-dg">
+                                        2&#176C
+                                    </div>
+                                    <div class="day__nighttime-dg">
+                                        0&#176C
+                                    </div>
+                                </div>
+                                <img src="img/temperature.svg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget__day day" id="day2">
+                        <div class="day__row">
+                            <div class="day__name">FRI</div>
+                            <div class="day__img">
+                                <img src="img/rain.svg"  class="day__image">
+                            </div>
+                            <div class="day__state">Rain</div>
+                            <div class="day__dg">
+                                <div class="day__dg-group">
+                                    <div class="day__daytime-dg">
+                                        2&#176C
+                                    </div>
+                                    <div class="day__nighttime-dg">
+                                        0&#176C
+                                    </div>
+                                </div>
+                                <img src="img/temperature.svg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget__day day" id="day3">
+                        <div class="day__row">
+                            <div class="day__name">FRI</div>
+                            <div class="day__img">
+                                <img src="img/rain.svg" class="day__image">
+                            </div>
+                            <div class="day__state">Rain</div>
+                            <div class="day__dg">
+                                <div class="day__dg-group">
+                                    <div class="day__daytime-dg">
+                                        2&#176C
+                                    </div>
+                                    <div class="day__nighttime-dg">
+                                        0&#176C
+                                    </div>
+                                </div>
+                                <img src="img/temperature.svg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget__day day"  id="day4">
+                        <div class="day__row">
+                            <div class="day__name">FRI</div>
+                            <div class="day__img">
+                                <img src="img/rain.svg" class="day__image">
+                            </div>
+                            <div class="day__state">Rain</div>
+                            <div class="day__dg">
+                                <div class="day__dg-group">
+                                    <div class="day__daytime-dg">
+                                        2&#176C
+                                    </div>
+                                    <div class="day__nighttime-dg">
+                                        0&#176C
+                                    </div>
+                                </div>
+                                <img src="img/temperature.svg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

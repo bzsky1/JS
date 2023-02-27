@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+* {
+  margin: 0;
+  transition: all 1s ease;
+}
+
+body {
+  background-color: rgb(198, 236, 198);
+  font-family: "Varela Round", sans-serif;
+}
+
+img {
+  max-height: 100px;
+}
+
+.wrapper {
+  width: 440px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+.city {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.city__input, .submit-button {
+  padding: 4px 5px;
+  border-radius: 5px;
+  border: 2px solid black;
+  font-size: 16px;
+  background-color: #dbdbdb;
+}
+
+.city__input {
+  width: 50%;
+}
+
+.submit-button {
+  margin-left: 30px;
+  background-color: #52b365;
+}
+
+.widget {
+  border: 4px black solid;
+  border-radius: 20px;
+}
+
+.widget__top {
+  background-color: #9c9c9c;
+  border-radius: 16px 16px 0 0;
+  padding: 15px;
+}
+
+.widget__top-row {
+  display: flex;
+}
+
+.widget__dg-block {
+  margin-left: 10px;
+  display: flex;
+  width: 165px;
+}
+.widget__dg-block img {
+  width: 80px;
+  margin: 0 0 0 -10px;
+}
+
+.dg-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 95px;
+}
+
+.widget__dg {
+  font-size: 45px;
+}
+
+.widget__fl {
+  font-size: 12px;
+}
+
+.widget__state-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  text-align: center;
+}
+
+.widget__days {
+  background-color: #dbdbdb;
+  border-radius: 0 0 16px 16px;
+  padding: 20px 40px;
+}
+.widget__days img {
+  max-height: 60px;
+}
+
+.day {
+  margin: 30px 0;
+}
+.day:first-child {
+  margin: 0 0 30px 0;
+}
+.day:last-child {
+  margin-bottom: 0px;
+}
+
+.day__row {
+  display: flex;
+}
+
+.day__name {
+  margin-left: 5px;
+}
+
+.day__state {
+  flex: 1 1 auto;
+}
+
+.day__img, .day__state, .day__dg-group, .day__name {
+  align-self: center;
+}
+
+.day__img, .day__name {
+  width: 70px;
+}
+
+.day__img {
+  margin-right: 30px;
+}
+
+.day__dg {
+  display: flex;
+}
+.day__dg img {
+  align-self: center;
+}
+
+.day__nighttime-dg, .day__daytime-dg {
+  width: 50px;
+  text-align: center;
+}
