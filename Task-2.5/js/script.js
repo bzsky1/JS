@@ -39,68 +39,63 @@ const switchImage = (state, way) => {
 }
 
 
-const filterList = (item) => {
+const changeHTML = (day, item) => {
     const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
     const dataDate = new Date(item.dt * 1000)
+    day.querySelector('.day__name').innerHTML = daysOfWeek[dataDate.getDay()]
+    day.querySelector('.day__daytime-dg').innerHTML = `${Math.round(item.main.temp)}&#176C`
+    const dayState = day.querySelector('.day__state').innerHTML = item.weather[0].main
+    const dayWay = day.querySelector('.day__image')
+    
+    switchImage(dayState, dayWay)
+}
+
+
+const changeHTMLNight = (day, item) => {
+    day.querySelector('.day__nighttime-dg').innerHTML = `${Math.round(item.main.temp)}&#176C`
+} 
+
+
+const filterList = (item) => {
     const today = new Date().getTime()
     const tomorrow = new Date(today + DAY_MILSEC * 1)
     const tomorrowDate = tomorrow.getDate()
     
     if (item.dt_txt.includes(`${tomorrowDate} 12:00:00`)) {
-        day1.querySelector('.day__name').innerHTML = daysOfWeek[dataDate.getDay()]
-        day1.querySelector('.day__daytime-dg').innerHTML = `${Math.round(item.main.temp)}&#176C`
-        const day1State = day1.querySelector('.day__state').innerHTML = item.weather[0].main
-        const day1Way = day1.querySelector('.day__image')
-        
-        switchImage(day1State, day1Way)
+        changeHTML(day1, item)
 
     } else if (item.dt_txt.includes(`${tomorrowDate} 03:00:00`)) {
-        day1.querySelector('.day__nighttime-dg').innerHTML = `${Math.round(item.main.temp)}&#176C`
+        changeHTMLNight(day1, item)
     }
 
     const afterTom = new Date(today + DAY_MILSEC * 2)
     const afterTomDate = afterTom.getDate()
 
     if (item.dt_txt.includes(`${afterTomDate} 12:00:00`)) {
-        day2.querySelector('.day__name').innerHTML = daysOfWeek[dataDate.getDay()]
-        day2.querySelector('.day__daytime-dg').innerHTML = `${Math.round(item.main.temp)}&#176C`
-        const day2State = day2.querySelector('.day__state').innerHTML = item.weather[0].main
-        const day2Way = day2.querySelector('.day__image')
+        changeHTML(day2, item)
 
-        switchImage(day2State, day2Way)
-    
     } else if (item.dt_txt.includes(`${afterTomDate} 03:00:00`)) {
-        day2.querySelector('.day__nighttime-dg').innerHTML = `${Math.round(item.main.temp)}&#176C`
+        changeHTMLNight(day2, item)
     }
 
     const twoDaysAfter = new Date(today + DAY_MILSEC * 3)
     const twoDaysAfterDate = twoDaysAfter.getDate()
 
     if (item.dt_txt.includes(`${twoDaysAfterDate} 12:00:00`)) {
-        day3.querySelector('.day__name').innerHTML = daysOfWeek[dataDate.getDay()]
-        day3.querySelector('.day__daytime-dg').innerHTML = `${Math.round(item.main.temp)}&#176C`
-        const day3State = day3.querySelector('.day__state').innerHTML = item.weather[0].main
-        const day3Way = day3.querySelector('.day__image')
-
-        switchImage(day3State, day3Way)
+        changeHTML(day3, item)
 
     } else if (item.dt_txt.includes(`${twoDaysAfterDate} 03:00:00`)) {
-        day3.querySelector('.day__nighttime-dg').innerHTML = `${Math.round(item.main.temp)}&#176C`
+        changeHTMLNight(day3, item)
     }
 
     const threeDaysAfter = new Date(today + DAY_MILSEC * 4)
     const threeDaysAfterDate = threeDaysAfter.getDate()
 
     if (item.dt_txt.includes(`${threeDaysAfterDate} 12:00:00`)) {
-        day4.querySelector('.day__name').innerHTML = daysOfWeek[dataDate.getDay()]
-        day4.querySelector('.day__daytime-dg').innerHTML = `${Math.round(item.main.temp)}&#176C`
-        const day4State = day4.querySelector('.day__state').innerHTML = item.weather[0].main
-        const day4Way = day4.querySelector('.day__image')
-
-        switchImage(day4State, day4Way)
+        changeHTML(day4, item)
 
     } else if (item.dt_txt.includes(`${threeDaysAfterDate} 03:00:00`)) {
-        day4.querySelector('.day__nighttime-dg').innerHTML = `${Math.round(item.main.temp)}&#176C`
+        changeHTMLNight(day4, item)
     }
 }
 
