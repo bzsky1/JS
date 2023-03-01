@@ -101,17 +101,14 @@ img {
 }
 
 .day {
-  margin: 30px 0;
-}
-.day:first-child {
-  margin: 0 0 30px 0;
-}
-.day:last-child {
-  margin-bottom: 0px;
+  display: flex;
+  justify-content: center;
+  height: 80px;
 }
 
 .day__row {
   display: flex;
+  flex: 1 1 auto;
 }
 
 .day__name {
@@ -131,7 +128,7 @@ img {
 }
 
 .day__img {
-  margin-right: 30px;
+  margin-right: 20px;
 }
 
 .day__dg {

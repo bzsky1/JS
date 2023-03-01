@@ -6,10 +6,7 @@ let state = document.querySelector('.widget__state')
 const city = document.querySelector('.widget__city')
 const widgetImg = document.getElementById('widgetImg')
 const form = document.getElementById('form')
-const day1 = document.getElementById('day1')
-const day2 = document.getElementById('day2')
-const day3 = document.getElementById('day3')
-const day4 = document.getElementById('day4')
+const daysColumn = document.querySelector('.widget__column')
 const DAY_MILSEC = 24 * 60 * 60 * 1000
 
 
@@ -39,20 +36,44 @@ const switchImage = (state, way) => {
 }
 
 
-const changeHTML = (day, item) => {
+
+
+const changeHTML = (item, night) => {
     const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
     const dataDate = new Date(item.dt * 1000)
-    day.querySelector('.day__name').innerHTML = daysOfWeek[dataDate.getDay()]
-    day.querySelector('.day__daytime-dg').innerHTML = `${Math.round(item.main.temp)}&#176C`
+
+    let day = document.createElement('div')
+    day.innerHTML = `<div class="widget__day day">
+                            <div class="day__row">
+                                <div class="day__name">${daysOfWeek[dataDate.getDay()]}</div>
+                                <div class="day__img">
+                                    <img src="img/rain.svg" class="day__image">
+                                </div>
+                                <div class="day__state">Rain</div>
+                                <div class="day__dg">
+                                    <div class="day__dg-group">
+                                        <div class="day__daytime-dg">
+                                            ${Math.round(item.main.temp)}&#176C
+                                        </div>
+                                        <div class="day__nighttime-dg">
+                                            ${night}
+                                        </div>
+                                    </div>
+                                    <img src="img/temperature.svg">
+                                </div>
+                            </div>
+                        </div>`
+
     const dayState = day.querySelector('.day__state').innerHTML = item.weather[0].main
     const dayWay = day.querySelector('.day__image')
-    
     switchImage(dayState, dayWay)
+
+    daysColumn.append(day)
 }
 
 
-const changeHTMLNight = (day, item) => {
-    day.querySelector('.day__nighttime-dg').innerHTML = `${Math.round(item.main.temp)}&#176C`
+const changeHTMLNight = (item) => {
+    return `${Math.round(item.main.temp)}&#176C`
 } 
 
 
@@ -60,42 +81,44 @@ const filterList = (item) => {
     const today = new Date().getTime()
     const tomorrow = new Date(today + DAY_MILSEC * 1)
     const tomorrowDate = tomorrow.getDate()
+
     
     if (item.dt_txt.includes(`${tomorrowDate} 12:00:00`)) {
-        changeHTML(day1, item)
+        daysColumn.innerHTML = ''
+        changeHTML(item, night)
 
     } else if (item.dt_txt.includes(`${tomorrowDate} 03:00:00`)) {
-        changeHTMLNight(day1, item)
+        night = changeHTMLNight(item)
     }
 
     const afterTom = new Date(today + DAY_MILSEC * 2)
     const afterTomDate = afterTom.getDate()
 
     if (item.dt_txt.includes(`${afterTomDate} 12:00:00`)) {
-        changeHTML(day2, item)
+        changeHTML(item, night)
 
     } else if (item.dt_txt.includes(`${afterTomDate} 03:00:00`)) {
-        changeHTMLNight(day2, item)
+        night = changeHTMLNight(item)
     }
 
     const twoDaysAfter = new Date(today + DAY_MILSEC * 3)
     const twoDaysAfterDate = twoDaysAfter.getDate()
 
     if (item.dt_txt.includes(`${twoDaysAfterDate} 12:00:00`)) {
-        changeHTML(day3, item)
+        changeHTML(item, night)
 
     } else if (item.dt_txt.includes(`${twoDaysAfterDate} 03:00:00`)) {
-        changeHTMLNight(day3, item)
+        night = changeHTMLNight(item)
     }
 
     const threeDaysAfter = new Date(today + DAY_MILSEC * 4)
     const threeDaysAfterDate = threeDaysAfter.getDate()
 
     if (item.dt_txt.includes(`${threeDaysAfterDate} 12:00:00`)) {
-        changeHTML(day4, item)
+        changeHTML(item, night)
 
     } else if (item.dt_txt.includes(`${threeDaysAfterDate} 03:00:00`)) {
-        changeHTMLNight(day4, item)
+        night = changeHTMLNight(item)
     }
 }
 

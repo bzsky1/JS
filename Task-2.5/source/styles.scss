@@ -124,19 +124,15 @@ img {
 
 
 .day {
-    margin: 30px 0;
-
-    &:first-child {
-        margin: 0 0 30px 0;
-    }
-    &:last-child {
-        margin-bottom: 0px;
-    }
+    display: flex;
+    justify-content: center;
+    height: 80px;
 }
 
 
 .day__row {
     display: flex;
+    flex: 1 1 auto;
 }
 
 
@@ -146,7 +142,7 @@ img {
 
 
 .day__state {
-flex: 1 1 auto;
+    flex: 1 1 auto;
 }
 
 
@@ -160,7 +156,7 @@ flex: 1 1 auto;
 }
 
 .day__img {
-    margin-right: 30px;
+    margin-right: 20px;
 }
 
 
