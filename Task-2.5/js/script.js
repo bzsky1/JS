@@ -36,8 +36,6 @@ const switchImage = (state, way) => {
 }
 
 
-
-
 const changeHTML = (item, night) => {
     const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
     const dataDate = new Date(item.dt * 1000)
@@ -81,44 +79,20 @@ const filterList = (item) => {
     const today = new Date().getTime()
     const tomorrow = new Date(today + DAY_MILSEC * 1)
     const tomorrowDate = tomorrow.getDate()
-
-    
-    if (item.dt_txt.includes(`${tomorrowDate} 12:00:00`)) {
-        daysColumn.innerHTML = ''
-        changeHTML(item, night)
-
-    } else if (item.dt_txt.includes(`${tomorrowDate} 03:00:00`)) {
-        night = changeHTMLNight(item)
-    }
-
     const afterTom = new Date(today + DAY_MILSEC * 2)
     const afterTomDate = afterTom.getDate()
-
-    if (item.dt_txt.includes(`${afterTomDate} 12:00:00`)) {
-        changeHTML(item, night)
-
-    } else if (item.dt_txt.includes(`${afterTomDate} 03:00:00`)) {
-        night = changeHTMLNight(item)
-    }
-
     const twoDaysAfter = new Date(today + DAY_MILSEC * 3)
     const twoDaysAfterDate = twoDaysAfter.getDate()
-
-    if (item.dt_txt.includes(`${twoDaysAfterDate} 12:00:00`)) {
-        changeHTML(item, night)
-
-    } else if (item.dt_txt.includes(`${twoDaysAfterDate} 03:00:00`)) {
-        night = changeHTMLNight(item)
-    }
-
     const threeDaysAfter = new Date(today + DAY_MILSEC * 4)
     const threeDaysAfterDate = threeDaysAfter.getDate()
-
-    if (item.dt_txt.includes(`${threeDaysAfterDate} 12:00:00`)) {
-        changeHTML(item, night)
-
-    } else if (item.dt_txt.includes(`${threeDaysAfterDate} 03:00:00`)) {
-        night = changeHTMLNight(item)
+    const listOfDates= [tomorrowDate, afterTomDate, twoDaysAfterDate, threeDaysAfterDate]
+    
+    for (let i = 0; i < listOfDates.length; i++) {
+        if (item.dt_txt.includes(`${listOfDates[i]} 12:00:00`)) {
+            changeHTML(item, night)
+        } else if (item.dt_txt.includes(`${listOfDates[i]} 03:00:00`)) {
+            night = changeHTMLNight(item)
+        }
     }
 }
 
@@ -145,7 +119,13 @@ const fetchData = async () => {
 form.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    fetchData()
+    if (daysColumn.innerHTML !== '') {
+        daysColumn.innerHTML = ''
+        fetchData()
+    } else {
+        fetchData()
+    }
+    
 })
 
 fetchData()
