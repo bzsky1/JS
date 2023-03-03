@@ -85,15 +85,15 @@ const filterList = (item) => {
     const twoDaysAfterDate = twoDaysAfter.getDate()
     const threeDaysAfter = new Date(today + DAY_MILSEC * 4)
     const threeDaysAfterDate = threeDaysAfter.getDate()
-    const listOfDates= [tomorrowDate, afterTomDate, twoDaysAfterDate, threeDaysAfterDate]
+    const listOfDates = [tomorrowDate, afterTomDate, twoDaysAfterDate, threeDaysAfterDate]
     
-    for (let i = 0; i < listOfDates.length; i++) {
-        if (item.dt_txt.includes(`${listOfDates[i]} 12:00:00`)) {
+    listOfDates.map((day) => {
+        if (item.dt_txt.includes(`${day} 12:00:00`)) {
             changeHTML(item, night)
-        } else if (item.dt_txt.includes(`${listOfDates[i]} 03:00:00`)) {
+        } else if (item.dt_txt.includes(`${day} 03:00:00`)) {
             night = changeHTMLNight(item)
         }
-    }
+    })
 }
 
 const fetchData = async () => {
@@ -125,7 +125,6 @@ form.addEventListener('submit', (e) => {
     } else {
         fetchData()
     }
-    
 })
 
 fetchData()
