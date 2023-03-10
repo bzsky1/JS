@@ -4,6 +4,7 @@ const form = document.querySelector('#form')
 const listItems = document.querySelector('.list__items')
 const clear = document.querySelector('.list__clear-btn')
 
+let toDoList = []
 
 const newItem = () => {
     let item = document.createElement('div')
@@ -19,8 +20,13 @@ const newItem = () => {
                         </div>
                     </div>`
     
-    listItems.append(item)
-    localStorage.setItem(`_${addInput.value}`, `${addInput.value}`)
+    listItems.prepend(item)
+    let itemData = {
+        title: `${addInput.value}`,
+        isDone: false
+    }
+    toDoList.unshift(itemData)
+    localStorage.setItem('todos', JSON.stringify(toDoList))
 }
 
 
@@ -30,8 +36,13 @@ const deleteButton = () => {
         deleteButtons[i].addEventListener('click', () => {
             deleteButtons[i].parentElement.parentElement.remove()
 
-            localStorage.removeItem(`_${deleteButtons[i].parentElement.parentElement.querySelector('.item__name').innerHTML}`)
-            localStorage.removeItem(`${deleteButtons[i].parentElement.parentElement.querySelector('.item__name').innerHTML}-checked`)
+            toDoList = toDoList.filter((el) => {
+                if (el.title !== `${deleteButtons[i].parentElement.parentElement.querySelector('.item__name').innerHTML}`) {
+                    return el
+                }
+            })
+
+            localStorage.setItem('todos', JSON.stringify(toDoList))
         })
     }
 }
@@ -42,11 +53,22 @@ const checkChecked = () => {
     for (let i = 0; i < checkboxs.length; i++) {
         checkboxs[i].addEventListener('click', () => {
             if (checkboxs[i].checked) {
-                localStorage.removeItem(`_${checkboxs[i].parentElement.querySelector('.item__name').innerHTML}`)
-                localStorage.setItem(`${checkboxs[i].parentElement.querySelector('.item__name').innerHTML}-checked`, `${checkboxs[i].parentElement.querySelector('.item__name').innerHTML}`)
+
+                toDoList.filter((el) => {
+                    if (el.title === `${checkboxs[i].parentElement.querySelector('.item__name').innerHTML}`) {
+                        el.isDone = true
+                        localStorage.setItem('todos', JSON.stringify(toDoList))
+                    }
+                })
+
             } else {
-                localStorage.removeItem(`${checkboxs[i].parentElement.querySelector('.item__name').innerHTML}-checked`)
-                localStorage.setItem(`_${checkboxs[i].parentElement.querySelector('.item__name').innerHTML}`, `${checkboxs[i].parentElement.querySelector('.item__name').innerHTML}`)
+                toDoList.filter((el) => {
+                    if (el.title === `${checkboxs[i].parentElement.querySelector('.item__name').innerHTML}`) {
+                        el.isDone = false
+                        localStorage.setItem('todos', JSON.stringify(toDoList))
+                    }
+                })   
+                
             }
         })
     }
@@ -66,50 +88,55 @@ form.addEventListener('submit', (e) => {
 
     deleteButton()
     checkChecked()
+    clearBtn()
 })
 
-clear.addEventListener('click', () => {
-    listItems.innerHTML = ''
-    localStorage.clear()
-})
+const clearBtn = () => {
+    clear.addEventListener('click', () => {
+        listItems.innerHTML = ''
+        localStorage.clear()
+    })
+}
 
 window.addEventListener('load', () => {
     if (localStorage.length > 0) {
-        for (key in localStorage) {
-            let item = document.createElement('div')
-            if (key.includes('_')) {
-                item.innerHTML = `
-                                <div class="list__item item" id="${localStorage[key]}">
-                                    <label class="item__label">
-                                        <span class="item__name">${localStorage[key]}</span>
-                                        <input type="checkbox" class="item__input">
-                                        <img src="img/done.svg" class="item__check">
-                                    </label>
-                                    <div class="item__delete">
-                                        <img class="item__delete-image" src="img/bin.svg">
-                                    </div>
-                                </div>`
-
+        toDoList = JSON.parse(localStorage.getItem('todos')) || []
+        
+        toDoList.filter((el) => {
+            if (el.title) {
+                let item = document.createElement('div')
+                if (el.isDone === false) {
+                    item.innerHTML = `
+                                    <div class="list__item item">
+                                        <label class="item__label">
+                                            <span class="item__name">${el.title}</span>
+                                            <input type="checkbox" class="item__input">
+                                            <img src="img/done.svg" class="item__check">
+                                        </label>
+                                        <div class="item__delete">
+                                            <img class="item__delete-image" src="img/bin.svg">
+                                        </div>
+                                    </div>`
+                    
+                } else if (el.isDone === true) {
+                    item.innerHTML = `
+                                    <div class="list__item item">
+                                        <label class="item__label">
+                                            <span class="item__name">${el.title}</span>
+                                            <input checked type="checkbox" class="item__input">
+                                            <img src="img/done.svg" class="item__check">
+                                        </label>
+                                        <div class="item__delete">
+                                            <img class="item__delete-image" src="img/bin.svg">
+                                        </div>
+                                    </div>`
+                }
                 listItems.append(item)
-
-            } else if (key.includes(`${localStorage[key]}-checked`)) {
-                item.innerHTML = `
-                                <div class="list__item item">
-                                    <label class="item__label">
-                                        <span class="item__name">${localStorage[key]}</span>
-                                        <input type="checkbox" checked class="item__input">
-                                        <img src="img/done.svg" class="item__check">
-                                    </label>
-                                    <div class="item__delete">
-                                        <img class="item__delete-image" src="img/bin.svg">
-                                    </div>
-                                </div>`
-
-                listItems.append(item)
-
             }
-        }
+        })
         deleteButton()
         checkChecked()
     }
 })
+clearBtn()
+
