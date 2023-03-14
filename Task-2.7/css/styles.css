@@ -1,0 +1,215 @@
+@import url("https://fonts.googleapis.com/css2?family=Sono:wght@400;600&display=swap");
+* {
+  margin: 0;
+}
+
+body {
+  font-family: "Sono", sans-serif;
+  background-color: #f4f4f4;
+}
+
+.body-dark {
+  background-color: #1d1d1d;
+}
+
+.header img {
+  height: 30px;
+}
+
+.header {
+  background-color: #fff;
+  padding: 40px 150px;
+}
+
+.header__input {
+  display: none;
+}
+
+.header-dark {
+  background-color: black;
+  color: #bababa;
+}
+
+.header img {
+  height: 30px;
+}
+
+.header__row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__title {
+  font-size: 2.8rem;
+}
+
+.header__dark-mode, .header__light-mode {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.header__dark-mode img, .header__light-mode img {
+  margin-right: 5px;
+}
+
+.header__light-mode {
+  display: none;
+  border: 2px solid #bababa;
+}
+
+.main {
+  padding: 50px 100px;
+}
+
+.main__search-and-filter {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.main__search {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 1px 2px 5px #bababa;
+  border-radius: 8px;
+}
+
+.search-dark, .search-input-dark, .filter-dark {
+  background-color: #e5e5e5;
+  box-shadow: none;
+}
+
+.main__search-img {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.main__search-input {
+  border: none;
+  outline: none;
+  font-size: 17px;
+  width: 350px;
+}
+.main__search-input::-webkit-search-cancel-button {
+  display: none;
+}
+.main__search-input::-ms-clear {
+  display: none;
+}
+
+.main__dropdown {
+  position: relative;
+}
+
+.dropdown__button {
+  background-color: #fff;
+  font-size: 17px;
+  border: none;
+  padding: 10px 0 10px 20px;
+  width: 270px;
+  text-align: left;
+  position: relative;
+  font-family: "Sono", sans-serif;
+  box-shadow: 1px 2px 5px #bababa;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+}
+.dropdown__button::after {
+  content: "";
+  background-image: url("/img/chevron-light.svg");
+  height: 25px;
+  width: 25px;
+  background-size: cover;
+  position: absolute;
+  left: 230px;
+  top: 7px;
+}
+
+.dropdown__list {
+  background-color: #fff;
+  font-size: 17px;
+  border: none;
+  list-style-type: none;
+  padding: 0;
+  position: absolute;
+  width: 270px;
+  z-index: 1;
+  box-shadow: 1px 2px 5px #bababa;
+  border-radius: 8px;
+  top: 40px;
+  display: none;
+}
+
+.dropdown__list--visible {
+  display: block;
+}
+
+.dropdown__list-item {
+  padding: 10px 0 10px 20px;
+  cursor: pointer;
+}
+.dropdown__list-item:last-child {
+  border-top: 0.5px solid rgb(226, 226, 226);
+}
+
+.dropdown__input {
+  display: none;
+}
+
+.main__countries {
+  display: grid;
+  gap: 80px;
+  grid-template-columns: repeat(auto-fit, 250px);
+  justify-content: center;
+  align-items: center;
+}
+
+.country {
+  background-color: #fff;
+  box-shadow: 1px 2px 5px #bababa;
+  font-size: 0.9rem;
+  height: 60vh;
+  position: relative;
+}
+
+.country-dark {
+  box-shadow: none;
+  background-color: rgb(92, 92, 92);
+  color: black;
+}
+
+.country__img img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.country__info {
+  position: absolute;
+  margin: 15px;
+  top: 55%;
+}
+
+.country__name {
+  margin-top: 20px;
+  margin-bottom: 25px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.country__population, .country__reg {
+  margin-bottom: 10px;
+}
+
+.error {
+  margin-top: 30vh;
+  color: red;
+  text-align: center;
+  font-size: 2rem;
+  display: none;
+}

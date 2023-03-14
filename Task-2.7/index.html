@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <title>Countries</title>
+</head>
+<body class="body">
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__row">
+                <div class="header__title">Where in the world?</div>
+                <input type="text" class="header__input" value="light">
+                <div class="header__dark-mode">
+                    <img src="img/moon.svg">
+                    <span>Dark mode</span>
+                </div>
+                <div class="header__light-mode">
+                    <img src="img/sun.svg">
+                    <span>Light mode</span>
+                </div>
+            </div>
+        </header>
+        <div class="main">
+            <form id="form">
+                <div class="main__search-and-filter">
+                    <div class="main__search">
+                        <img class="main__search-img" src="img/search-light.svg">
+                        <input class="main__search-input" type="search" placeholder="search for a country">
+                    </div>
+                    <div class="main__filter">
+                        <div class="main__dropdown">
+                            <button class="dropdown__button">Fiter by region</button>
+                            <ul class="dropdown__list">
+                                <li class="dropdown__list-item" data-dropdown-value="region">Fiter by region</li>
+                                <li class="dropdown__list-item" data-dropdown-value="population">Fiter by population</li>
+                            </ul>
+                            <input type="text" class="dropdown__input" value="region">
+                        </div>
+                    </div>
+                </div>
+                <div class="main__countries">
+                    <div class="error">
+                        <div class="error__text">No matches found</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
