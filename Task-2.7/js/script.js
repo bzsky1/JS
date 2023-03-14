@@ -20,7 +20,7 @@ const addCountries = (country) => {
                         </div>
                         <div class="country__info">
                             <div class="country__name">${country.name.common}</div>
-                            <div class="country__population">Population: ${country.population}</div>
+                            <div class="country__population">Population: ${country.population.toLocaleString('ua')}</div>
                             <div class="country__reg">Region: ${country.region}</div>
                             <div class="country__capital">Capital: ${country.capital[0]}</div>
                         </div>
@@ -35,7 +35,7 @@ const addCountries = (country) => {
                         </div>
                         <div class="country__info">
                             <div class="country__name">${country.name.common}</div>
-                            <div class="country__population">Population: ${country.population}</div>
+                            <div class="country__population">Population: ${country.population.toLocaleString('ua')}</div>
                             <div class="country__reg">Region: ${country.region}</div>
                             <div class="country__capital">Capital: ${country.capital[0]}</div>
                         </div>
@@ -46,8 +46,8 @@ const addCountries = (country) => {
 
 
 const fetchData = async () => {
-    const res = await fetch('https://restcountries.com/v3.1/alpha?codes=col,pe,at,ao,nl,bj,cw,cz,dk,eg,fi,au,fj,hn,hk,in,iq,jp,jm,xk,la,lv,mr,nz,ua,sw,gb,tm,pt,mx,br,us,it')
-    // const res = await fetch('https://restcountries.com/v3.1/all')
+    // const res = await fetch('https://restcountries.com/v3.1/alpha?codes=col,pe,at,ao,nl,bj,cw,cz,dk,eg,fi,au,fj,hn,hk,in,iq,jp,jm,xk,la,lv,mr,nz,ua,sw,gb,tm,pt,mx,br,us,it')
+    const res = await fetch('https://restcountries.com/v3.1/all')
     const data = await res.json()
 
     countries = data
