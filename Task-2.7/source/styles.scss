@@ -20,6 +20,19 @@ body {
 }
 
 
+.preloader {
+    z-index: 2;
+    background-color: #ffffffd7;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // display: none;
+}
+
+
 .header img {
     height: 30px;
 }

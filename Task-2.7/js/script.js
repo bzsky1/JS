@@ -46,8 +46,8 @@ const addCountries = (country) => {
 
 
 const fetchData = async () => {
-    // const res = await fetch('https://restcountries.com/v3.1/alpha?codes=col,pe,at,ao,nl,bj,cw,cz,dk,eg,fi,au,fj,hn,hk,in,iq,jp,jm,xk,la,lv,mr,nz,ua,sw,gb,tm,pt,mx,br,us,it')
-    const res = await fetch('https://restcountries.com/v3.1/all')
+    const res = await fetch('https://restcountries.com/v3.1/alpha?codes=col,pe,at,ao,nl,bj,cw,cz,dk,eg,fi,au,fj,hn,hk,in,iq,jp,jm,xk,la,lv,mr,nz,ua,sw,gb,tm,pt,mx,br,us,it')
+    // const res = await fetch('https://restcountries.com/v3.1/all')
     const data = await res.json()
 
     countries = data
@@ -174,3 +174,8 @@ document.addEventListener('keydown', (e) => {
 })
 
 fetchData()
+
+window.onload = function () {
+    let preloader = document.querySelector('.preloader')
+    preloader.style.display = 'none'
+}
