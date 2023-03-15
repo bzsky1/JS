@@ -11,38 +11,33 @@ const er = document.querySelector('.error')
 let countries = []
 
 const addCountries = (country) => {
-    if (mode.value === 'light') {
-        let el = document.createElement('div')
-        el.innerHTML = `
-                    <div class="main__country country">
-                        <div class="country__img">
-                            <img src="${country.flags.svg}">
-                        </div>
-                        <div class="country__info">
-                            <div class="country__name">${country.name.common}</div>
-                            <div class="country__population">Population: ${country.population.toLocaleString('ua')}</div>
-                            <div class="country__reg">Region: ${country.region}</div>
-                            <div class="country__capital">Capital: ${country.capital[0]}</div>
-                        </div>
-                    </div>`
-        mainCountries.append(el)
+    let el = document.createElement('div')
+    el.innerHTML = `
+                <div class="main__country country ${mode.value === 'light' ? '' : 'country-dark'}">
+                    <div class="country__img">
+                        <img src="${country.flags.svg}">
+                    </div>
+                    <div class="country__info">
+                        <div class="country__name">${country.name.common}</div>
+                        <div class="country__population">Population: ${country.population.toLocaleString('ua')}</div>
+                        <div class="country__reg">Region: ${country.region}</div>
+                        <div class="country__capital">Capital: ${country.capital[0]}</div>
+                    </div>
+                </div>`
+    mainCountries.append(el)
+}
+
+
+const sortFunctionByRegion = (a, b) => {
+    if (a.region > b.region) {
+        return 1
+    } else if (a.region < b.region) {
+        return -1
     } else {
-        let el = document.createElement('div')
-        el.innerHTML = `
-                    <div class="main__country country country-dark">
-                        <div class="country__img">
-                            <img src="${country.flags.svg}">
-                        </div>
-                        <div class="country__info">
-                            <div class="country__name">${country.name.common}</div>
-                            <div class="country__population">Population: ${country.population.toLocaleString('ua')}</div>
-                            <div class="country__reg">Region: ${country.region}</div>
-                            <div class="country__capital">Capital: ${country.capital[0]}</div>
-                        </div>
-                    </div>`
-        mainCountries.append(el)
+        return 0
     }
 }
+
 
 
 const fetchData = async () => {
@@ -52,15 +47,7 @@ const fetchData = async () => {
 
     countries = data
 
-    countries.sort(function (a, b) {
-        if (a.region > b.region) {
-            return 1
-        } else if (a.region < b.region) {
-            return -1
-        } else {
-            return 0
-        }
-    }) 
+    countries.sort(sortFunctionByRegion) 
     countries.filter(addCountries)
 }
 
@@ -111,15 +98,7 @@ document.querySelectorAll('.dropdown__list-item').forEach((item) => {
         dropdownList.classList.remove('dropdown__list--visible')
 
         if (dropdownInput.value === 'region') {
-            countries.sort(function (a, b) {
-                if (a.region > b.region) {
-                    return 1
-                } else if (a.region < b.region) {
-                    return -1
-                } else {
-                    return 0
-                }
-            }) 
+            countries.sort(sortFunctionByRegion) 
             mainCountries.innerHTML = ''
             countries.filter(addCountries)
         } else {
