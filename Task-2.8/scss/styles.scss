@@ -1,0 +1,413 @@
+@import url('https://fonts.googleapis.com/css2?family=Dokdo&family=Swanky+and+Moo+Moo&display=swap');
+
+
+$Blue: #1500b8;
+$green: rgb(127, 179, 24);
+
+
+
+* {
+    margin: 0;
+}
+
+
+body {
+    font-family: 'Swanky and Moo Moo', cursive;
+    position: relative;
+}
+
+
+.wrapper {
+}
+.main {
+    background-image: url('/img/home.webp');
+    background-position: 0 0;
+    background-size: cover;
+    height: 70vh;
+    background-attachment: fixed;
+}
+.header {
+    background-image: url('/img/home.webp');
+    background-position: 0 0;
+    background-size: cover;
+}
+.container {
+    width: 1000px;
+    margin: 0 auto;
+}
+.header__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    position: relative;
+}
+.header__nav {
+    a {
+        text-decoration: none;
+        margin-right: 50px;
+        color: white;
+        font-size: 20px;
+
+        &:hover {
+            text-shadow: 3px 3px 8px $green;
+            // color: $green;
+        }
+
+    }
+}
+.header__nav-home {
+}
+.header__nav-products {
+}
+.header__nav-about {
+}
+.header__logo {
+    font-family: 'Dokdo', cursive;
+    font-size: 90px;
+    color: white;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    text-shadow: 0px 0px 8px $green;
+    cursor: cell;
+}
+.header__cart {
+    position: relative;
+    cursor: pointer;
+}
+
+.cart-inside {
+    position: absolute;
+    background-color: #fff;
+    width: 16px;
+    text-align: center;
+    border-radius: 50%;
+    left: 16px;
+}
+
+.cart-img {
+    height: 40px;
+}
+.main__content {
+    margin-left: 170px;
+    text-align: center;
+    width: 500px;
+}
+.main__slogan {
+    font-size: 60px;
+}
+.main__sub-slogan {
+    font-size: 22px;
+    margin-top: -15px;
+}
+.show-btn {
+    margin-top: 10px;
+    display: inline-block;
+    width: 80px;
+    padding: 4px;
+    border: 1px solid black;
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    &:hover {
+        text-shadow: 0px 0px 8px $green;
+    }
+}
+.featured {
+    margin-bottom: 50px;
+}
+.featured__title {
+    font-size: 34px;
+    text-align: center;
+}
+.featured__slash {
+    color: $green;
+}
+.featured__products {
+}
+.featured__row {
+    display: flex;
+    justify-content: space-around;
+}
+.featured__item {
+}
+.item {
+    text-align: center;
+    width: 300px;
+    font-size: 20px;
+    text-decoration: underline $green;
+}
+.item__img {
+    position: relative;
+
+    &:hover .item__add-button {
+        display: block;
+    }
+}
+
+.item__add-button {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 40px;
+    background-color: black;
+    padding: 10px 15px;
+    color: white;
+    font-size: 20px;
+    display: none;
+    
+    &:hover {
+        cursor: pointer;
+        text-shadow: 3px 2px 1px $green;
+    }
+}
+
+
+// ________________________________________________________
+// About
+
+
+.about-content {
+    text-align: center;
+    margin-top: 60px;
+}
+.container {
+}
+.about-content__title {
+    font-size: 50px;
+}
+
+.featured__slash {
+}
+.about-content__text {
+    font-size: 22px;
+    text-decoration: underline $green;
+}
+
+
+// ________________________________________________________
+// Products
+
+
+.products {
+    margin-top: 60px;
+}
+.container {
+}
+.products__row {
+    display: flex;
+}
+.sidebar {
+    width: 200px;
+}
+.products__search-input {
+    border: none;
+    outline: none;
+    font-family: 'Swanky and Moo Moo', cursive;
+    font-size: 18px;
+
+    &::-webkit-search-cancel-button {
+        display: none;
+    }
+
+    &::-ms-clear{
+        display: none;
+    }
+}
+.companies {
+}
+.companies__title {
+}
+.companies__list {
+}
+.company {
+
+    &:hover {
+        cursor: pointer;
+        text-shadow: 3px 2px 1px $green;
+    }
+}
+.price {
+}
+.price__title {
+}
+.price__input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    border-radius: 10px/100%;
+    height: 7px;
+    border: 1px solid black;
+    background-color: $green;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    background: #000000;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px/100%;
+    cursor: pointer;
+    width: 20px;
+    height: 15px;
+    -webkit-appearance: none;
+    margin-top: -4px;
+  }
+
+  input[type=range]::-moz-range-track {
+      border-radius: 10px/100%;
+      height: 5px;
+      border: 1px solid black;
+      background-color: $green;
+  }
+ input[type=range]::-moz-range-thumb {
+      background: #000000;
+      border: 1px solid rgb(0, 0, 0);
+      border-radius: 10px/100%;
+      cursor: pointer;
+  }
+
+
+
+.price__value {
+    text-align: center;
+    font-size: 18px;
+    
+}
+.products__content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 200px);
+    column-gap: 60px;
+    row-gap: 30px;
+    width: 800px;
+}
+.products__item {
+    width: 200px;
+    height: 300px;
+    
+    img{
+        width: 200px;
+    }
+
+}
+.item {
+}
+.item__img {
+}
+.item__add-button {
+}
+.item__name {
+}
+.item__price {
+}
+
+// ________________________________________________________
+// Cart
+
+.cart {
+    position: fixed;
+    right: 0;
+    width: 25%;
+    height: 100vh;
+    background-color: #c9e4ff;
+    z-index: 1;
+    display: none;
+    flex-direction: column;
+
+}
+.cart__close-btn {
+    margin-top: -10px;
+    margin-left: 10px;
+    font-size: 50px;
+    font-family: 'Dokdo', cursive;
+    cursor: pointer;
+
+}
+.cart__title {
+    text-align: center;
+    font-size: 40px;
+    text-shadow: 1px 2px 1px $green;
+    margin-bottom: 20px;
+    margin-top: -20px;
+}
+.cart__items {
+    flex: 1 1 auto;
+}
+.cart-item {
+    background-color: #fff;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.cart-item__img {
+    margin-left: 30px;
+
+    img {
+        height: 100px;
+    }
+}
+.cart-item__info {
+    flex: 1 1 auto;
+    text-align: center;
+}
+.cart-item__name, .cart-item__price {
+    text-decoration: underline $green;
+}
+.cart-item__price {
+}
+.cart-item__remove {
+    color: #b3b3b3;
+
+    &:hover {
+        cursor: pointer;
+        color: black;
+        text-decoration: underline 0.1px red;
+    }
+}
+.cart-item__amount {
+    text-align: center;
+    width: 40px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cart-item__amount-up, .cart-item__amount-down {
+    width: 7px;
+    height: 7px;
+    border-bottom: 3px $green solid;
+    border-left: 3px $green solid;
+    cursor: pointer;
+
+}
+.cart-item__amount-up{
+    transform: rotate(135deg);
+}
+.cart-item__amount-digit {
+    font-size: 20px;
+}
+.cart-item__amount-down {
+    transform: rotate(-45deg);
+}
+.cart__total {
+    text-align: center;
+    font-size: 36px;
+    text-decoration: underline $green;
+    margin-bottom: 30px;
+}
+.cart__checkout-btn {
+    margin-bottom: 40px;
+    text-align: center;
+    border: solid;
+    align-self: center;
+    padding: 5px 15px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $green;
+    }
+}

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" href="/img/snowboard-favicon.svg">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <title>W-Shop</title>
+</head>
+<body>
+    <div class="cart">
+        <div class="cart__close-btn">
+            X
+        </div>
+        <div class="cart__title">Your order</div>
+        <div class="cart__items">
+        </div>
+        <div class="cart__total">Total: € 349.95</div>
+        <div class="cart__checkout-btn">CHECKOUT</div>
+    </div>
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="header__row">
+                    <nav class="header__nav">
+                        <a href="index.html" class="header__nav-home">Home</a>
+                        <a href="#" class="header__nav-products">Products</a>
+                        <a href="about.html" class="header__nav-about">About</a>
+                    </nav>
+                    <div class="header__logo">W-Shop</div>
+                    <div class="header__cart">
+                        <div class="cart-inside">5</div>
+                        <img src="img/cart.svg" class="cart-img">
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="products">
+            <div class="container">
+                <div class="products__row">
+                    <div class="sidebar">
+                        <input type="search" class="products__search-input" placeholder="Search...">
+                        <div class="companies">
+                            <h3 class="companies__title">Companies</h3>
+                            <ul class="companies__list">
+                                <li class="company" data-company="bataleon">Bataleon</li>
+                                <li class="company" data-company="burton">Burton</li>
+                                <li class="company" data-company="capita">Capita</li>
+                                <li class="company" data-company="dc">DC</li>
+                                <li class="company" data-company="ride">Ride</li>
+                                <li class="company" data-company="voelkl">Voelkl</li>
+                            </ul>
+                        </div>
+                        <div class="price">
+                            <h3 class="price__title">Price</h3>
+                            <input type="range" min="150" max="600" step="10" value="" class="price__input">
+                            <div class="price__value">€ 150</div>
+                        </div>
+                    </div>
+                    <div class="products__content">
+                        <div class="products__item item" data-company="bataleon">
+                            <div class="item__img">
+                                <img src="products images/bataleon-blow-snowboard-2023.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Bataleon Blow 2023</div>
+                            <div class="item__price">€ 489.95</div>
+                        </div>
+                        <div class="products__item item" data-company="bataleon">
+                            <div class="item__img">
+                                <img src="products images/bataleon-camel-toe-snowboard-2023.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Bataleon Camel toe 2023</div>
+                            <div class="item__price">€ 269.95</div>
+                        </div>
+                        <div class="products__item item" data-company="bataleon">
+                            <div class="item__img">
+                                <img src="products images/bataleon-chaser-snowboard-2023.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Bataleon Chaser 2023</div>
+                            <div class="item__price">€ 329.95</div>
+                        </div>
+                        <div class="products__item item">
+                            <div class="item__img">
+                                <img src="products images/burton-family-tree-panhandler-snowboard-2018_4.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Burton Family tree</div>
+                            <div class="item__price">€ 589.95</div>
+                        </div>
+                        <div class="products__item item" data-company="capita">
+                            <div class="item__img">
+                                <img src="products images/capita-defenders-of-awesome-snowboard-2023_2.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Capita Defenders of awesome</div>
+                            <div class="item__price">€ 209.95</div>
+                        </div>
+                        <div class="products__item item" data-company="capita">
+                            <div class="item__img">
+                                <img src="products images/capita-party-shark-snowboard.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Capita Party-Shark</div>
+                            <div class="item__price">€ 349.95</div>
+                        </div>
+                        <div class="products__item item" data-company="capita">
+                            <div class="item__img">
+                                <img src="products images/capita-spring-break-ultralight-powder-displacement-snowcraft_2.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Capita Spring break</div>
+                            <div class="item__price">€ 149.95</div>
+                        </div>
+                        <div class="products__item item" data-company="capita">
+                            <div class="item__img">
+                                <img src="products images/capita-supernova-snowboard-2018.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Capita Supernova 2018</div>
+                            <div class="item__price">€ 239.95</div>
+                        </div>
+                        <div class="products__item item" data-company="dc">
+                            <div class="item__img">
+                                <img src="products images/dc-hr-snowboard.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">DC HR</div>
+                            <div class="item__price">€ 459.95</div>
+                        </div>
+                        <div class="products__item item" data-company="dc">
+                            <div class="item__img">
+                                <img src="products images/dc-space-echo-snowboard.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">DC Space Echo</div>
+                            <div class="item__price">€ 429.95</div>
+                        </div>
+                        <div class="products__item item">
+                            <div class="item__img">
+                                <img src="products images/gnu-unreal-collection-c2e-snowboard-2018_2.png">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">GNU Unreal 2018</div>
+                            <div class="item__price">€ 449.95</div>
+                        </div>
+                        <div class="products__item item" data-company="ride">
+                            <div class="item__img">
+                                <img src="products images/ride-burnout-snowboard.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Ride Burnout</div>
+                            <div class="item__price">€ 279.95</div>
+                        </div>
+                        <div class="products__item item" data-company="ride">
+                            <div class="item__img">
+                                <img src="products images/ride-helix-snowboard.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Ride Helix</div>
+                            <div class="item__price">€ 229.95</div>
+                        </div>
+                        <div class="products__item item" data-company="ride">
+                            <div class="item__img">
+                                <img src="products images/ride-mtnpig-snowboard-2022.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Ride Mtnpig</div>
+                            <div class="item__price">€ 259.95</div>
+                        </div>
+                        <div class="products__item item" data-company="ride">
+                            <div class="item__img">
+                                <img src="products images/ride-mtnpig-snowboard_2.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Ride Mtnpig 2</div>
+                            <div class="item__price">€ 339.95</div>
+                        </div>
+                        <div class="products__item item">
+                            <div class="item__img">
+                                <img src="products images/rome-artifact-pro-snowboard-2023.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Rome Artifact - pro 2023</div>
+                            <div class="item__price">€ 599.95</div>
+                        </div>
+                        <div class="products__item item" data-company="voelkl">
+                            <div class="item__img">
+                                <img src="products images/voelkl-riot-sqd-camber-snowboard-2014.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Voelkl riot 2014</div>
+                            <div class="item__price">€ 179.95</div>
+                        </div>
+                        <div class="products__item item" data-company="voelkl">
+                            <div class="item__img">
+                                <img src="products images/voelkl-squad-prime-snowboard-2014.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Voelkl squad prime 2014</div>
+                            <div class="item__price">€ 235.95</div>
+                        </div>
+                        <div class="products__item item" data-company="voelkl">
+                            <div class="item__img">
+                                <img src="products images/voelkl-squad-rocker-snowboard-2015.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Voelkl squad rocker 2015</div>
+                            <div class="item__price">€ 279.95</div>
+                        </div>
+                        <div class="products__item item" data-company="voelkl">
+                            <div class="item__img">
+                                <img src="products images/voelkl-squad-rocker-snowboard-2014.png" class="img">
+                                <div class="item__add-button">Add to cart</div>
+                            </div>
+                            <div class="item__name">Voelkl squad rocker 2014</div>
+                            <div class="item__price">€ 189.95</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/products.js"></script>
+</body>
+</html>
