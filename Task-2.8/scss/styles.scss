@@ -317,6 +317,7 @@ input[type=range]::-webkit-slider-runnable-track {
     z-index: 1;
     display: none;
     flex-direction: column;
+    border-left: 4px solid $green;
 
 }
 .cart__close-btn {
@@ -410,4 +411,20 @@ input[type=range]::-webkit-slider-runnable-track {
     &:hover {
         background-color: $green;
     }
+}
+
+
+.hide {
+    display: none;
+}
+
+
+.error {
+    align-self: center;
+    margin-left: 75%;
+    width: 400px;
+}   
+.error__text {
+    font-size: 40px;
+    text-shadow: 3px 1px 3px red;
 }

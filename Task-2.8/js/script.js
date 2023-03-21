@@ -32,6 +32,11 @@ const removeButton = () => {
 
             localStorage.setItem('items', JSON.stringify(itemsInCartLS))
 
+            addToCartButtons.forEach((btn) => {
+                if (btn.parentElement.parentElement.innerHTML.includes(button.parentElement.parentElement.querySelector('.cart-item__name').innerHTML)) {
+                    btn.innerText = 'Add to cart'
+                }
+            })
             checkCart()
             totalPrice()
         })
@@ -66,41 +71,51 @@ const amountUpAndDownButtons = () => {
     cartItemAmountUpButtons.forEach((button) => {
         const amount = button.parentElement.querySelector('.cart-item__amount-digit')
         const itemPrice = button.parentElement.parentElement.querySelector('.cart-item__price')
-        button.addEventListener('click', () => {
-            amount.innerText = `${Number(amount.innerText) + 1}`
 
-            itemsInCartLS = itemsInCartLS.filter((item) => {
-                if (item.name === `${button.parentElement.parentElement.querySelector('.cart-item__name').innerText}`) {
-                    item.amount += 1
-                }
-                return item
-            })
-
-            localStorage.setItem('items', JSON.stringify(itemsInCartLS))
-
-            total.innerText = `Total: € ${(Number(total.innerText.slice(8)) + Number(itemPrice.innerText.slice(2))).toFixed(2)}`
-        })
-    })
-
-    cartItemAmountDownButtons.forEach((button) => {
-        const amount = button.parentElement.querySelector('.cart-item__amount-digit')
-        const itemPrice = button.parentElement.parentElement.querySelector('.cart-item__price')
-        button.addEventListener('click', () => {
-            if (amount.innerText !== '1') {
-                amount.innerText = `${Number(amount.innerText) - 1}`
-
+        if (!button.classList.contains('checked')) {
+            button.classList.add('checked')
+            button.addEventListener('click', () => {
+                amount.innerText = `${Number(amount.innerText) + 1}`
+    
                 itemsInCartLS = itemsInCartLS.filter((item) => {
                     if (item.name === `${button.parentElement.parentElement.querySelector('.cart-item__name').innerText}`) {
-                        item.amount -= 1
+                        item.amount += 1
                     }
                     return item
                 })
     
                 localStorage.setItem('items', JSON.stringify(itemsInCartLS))
+    
+                total.innerText = `Total: € ${(Number(total.innerText.slice(8)) + Number(itemPrice.innerText.slice(2))).toFixed(2)}`
+            })
+        }
 
-                total.innerText = `Total: € ${(Number(total.innerText.slice(8)) - Number(itemPrice.innerText.slice(2))).toFixed(2)}`
-            }
-        })
+
+    })
+
+    cartItemAmountDownButtons.forEach((button) => {
+        const amount = button.parentElement.querySelector('.cart-item__amount-digit')
+        const itemPrice = button.parentElement.parentElement.querySelector('.cart-item__price')
+
+        if (!button.classList.contains('checked')) {
+            button.classList.add('checked')
+            button.addEventListener('click', () => {
+                if (amount.innerText !== '1') {
+                    amount.innerText = `${Number(amount.innerText) - 1}`
+    
+                    itemsInCartLS = itemsInCartLS.filter((item) => {
+                        if (item.name === `${button.parentElement.parentElement.querySelector('.cart-item__name').innerText}`) {
+                            item.amount -= 1
+                        }
+                        return item
+                    })
+        
+                    localStorage.setItem('items', JSON.stringify(itemsInCartLS))
+    
+                    total.innerText = `Total: € ${(Number(total.innerText.slice(8)) - Number(itemPrice.innerText.slice(2))).toFixed(2)}`
+                }
+            })
+        }
     })
 }
 
@@ -115,6 +130,7 @@ cartButton.addEventListener('click', () => {
 
     removeButton()
     amountUpAndDownButtons()
+
 })
 
 
@@ -149,7 +165,7 @@ addToCartButtons.forEach((button) => {
             amount: 1
         }
 
-        if (!cartItems.innerHTML.includes(newItem.innerHTML)) {
+        if (!cartItems.innerHTML.includes(itemName)) {
             cartItems.append(newItem)
             itemsInCartLS.unshift(itemData)
             localStorage.setItem('items', JSON.stringify(itemsInCartLS))
@@ -159,7 +175,7 @@ addToCartButtons.forEach((button) => {
         } else {
         }
 
-        if (cartItems.innerHTML.includes(newItem.innerHTML)) {
+        if (cartItems.innerHTML.includes(itemName)) {
             let removeButtons = document.querySelectorAll('.cart-item__remove')
             removeButtons.forEach((removeButton) => {
                 removeButton.addEventListener('click', () => {
@@ -173,7 +189,11 @@ addToCartButtons.forEach((button) => {
         
                     localStorage.setItem('items', JSON.stringify(itemsInCartLS))
 
-                    button.innerText = 'Add to cart'
+                    addToCartButtons.forEach((btn) => {
+                        if (btn.parentElement.parentElement.innerHTML.includes(removeButton.parentElement.parentElement.querySelector('.cart-item__name').innerHTML)) {
+                            btn.innerText = 'Add to cart'
+                        }
+                    })
                     checkCart()
                     totalPrice()
                 })
@@ -181,6 +201,7 @@ addToCartButtons.forEach((button) => {
         }
         checkCart()
         totalPrice()
+        amountUpAndDownButtons()
     })
 })
 
@@ -213,10 +234,14 @@ window.addEventListener('load', () => {
         checkCart()
         totalPrice()
     }
+    amountUpAndDownButtons()
+
+    addToCartButtons.forEach((button) => {
+        if (cartItems.innerHTML.includes(button.parentElement.parentElement.querySelector('.item__name').innerHTML)) {
+            button.innerText = 'Added'
+        }
+    })
 })
 
 checkCart()
 totalPrice()
-
- 
-

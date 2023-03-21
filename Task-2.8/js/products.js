@@ -32,6 +32,11 @@ const removeButton = () => {
 
             localStorage.setItem('items', JSON.stringify(itemsInCartLS))
 
+            addToCartButtons.forEach((btn) => {
+                if (btn.parentElement.parentElement.innerHTML.includes(button.parentElement.parentElement.querySelector('.cart-item__name').innerHTML)) {
+                    btn.innerText = 'Add to cart'
+                }
+            })
             checkCart()
             totalPrice()
         })
@@ -66,41 +71,51 @@ const amountUpAndDownButtons = () => {
     cartItemAmountUpButtons.forEach((button) => {
         const amount = button.parentElement.querySelector('.cart-item__amount-digit')
         const itemPrice = button.parentElement.parentElement.querySelector('.cart-item__price')
-        button.addEventListener('click', () => {
-            amount.innerText = `${Number(amount.innerText) + 1}`
 
-            itemsInCartLS = itemsInCartLS.filter((item) => {
-                if (item.name === `${button.parentElement.parentElement.querySelector('.cart-item__name').innerText}`) {
-                    item.amount += 1
-                }
-                return item
-            })
-
-            localStorage.setItem('items', JSON.stringify(itemsInCartLS))
-
-            total.innerText = `Total: € ${(Number(total.innerText.slice(8)) + Number(itemPrice.innerText.slice(2))).toFixed(2)}`
-        })
-    })
-
-    cartItemAmountDownButtons.forEach((button) => {
-        const amount = button.parentElement.querySelector('.cart-item__amount-digit')
-        const itemPrice = button.parentElement.parentElement.querySelector('.cart-item__price')
-        button.addEventListener('click', () => {
-            if (amount.innerText !== '1') {
-                amount.innerText = `${Number(amount.innerText) - 1}`
-
+        if (!button.classList.contains('checked')) {
+            button.classList.add('checked')
+            button.addEventListener('click', () => {
+                amount.innerText = `${Number(amount.innerText) + 1}`
+    
                 itemsInCartLS = itemsInCartLS.filter((item) => {
                     if (item.name === `${button.parentElement.parentElement.querySelector('.cart-item__name').innerText}`) {
-                        item.amount -= 1
+                        item.amount += 1
                     }
                     return item
                 })
     
                 localStorage.setItem('items', JSON.stringify(itemsInCartLS))
+    
+                total.innerText = `Total: € ${(Number(total.innerText.slice(8)) + Number(itemPrice.innerText.slice(2))).toFixed(2)}`
+            })
+        }
 
-                total.innerText = `Total: € ${(Number(total.innerText.slice(8)) - Number(itemPrice.innerText.slice(2))).toFixed(2)}`
-            }
-        })
+
+    })
+
+    cartItemAmountDownButtons.forEach((button) => {
+        const amount = button.parentElement.querySelector('.cart-item__amount-digit')
+        const itemPrice = button.parentElement.parentElement.querySelector('.cart-item__price')
+
+        if (!button.classList.contains('checked')) {
+            button.classList.add('checked')
+            button.addEventListener('click', () => {
+                if (amount.innerText !== '1') {
+                    amount.innerText = `${Number(amount.innerText) - 1}`
+    
+                    itemsInCartLS = itemsInCartLS.filter((item) => {
+                        if (item.name === `${button.parentElement.parentElement.querySelector('.cart-item__name').innerText}`) {
+                            item.amount -= 1
+                        }
+                        return item
+                    })
+        
+                    localStorage.setItem('items', JSON.stringify(itemsInCartLS))
+    
+                    total.innerText = `Total: € ${(Number(total.innerText.slice(8)) - Number(itemPrice.innerText.slice(2))).toFixed(2)}`
+                }
+            })
+        }
     })
 }
 
@@ -115,6 +130,7 @@ cartButton.addEventListener('click', () => {
 
     removeButton()
     amountUpAndDownButtons()
+
 })
 
 
@@ -149,7 +165,7 @@ addToCartButtons.forEach((button) => {
             amount: 1
         }
 
-        if (!cartItems.innerHTML.includes(newItem.innerHTML)) {
+        if (!cartItems.innerHTML.includes(itemName)) {
             cartItems.append(newItem)
             itemsInCartLS.unshift(itemData)
             localStorage.setItem('items', JSON.stringify(itemsInCartLS))
@@ -159,7 +175,7 @@ addToCartButtons.forEach((button) => {
         } else {
         }
 
-        if (cartItems.innerHTML.includes(newItem.innerHTML)) {
+        if (cartItems.innerHTML.includes(itemName)) {
             let removeButtons = document.querySelectorAll('.cart-item__remove')
             removeButtons.forEach((removeButton) => {
                 removeButton.addEventListener('click', () => {
@@ -173,7 +189,11 @@ addToCartButtons.forEach((button) => {
         
                     localStorage.setItem('items', JSON.stringify(itemsInCartLS))
 
-                    button.innerText = 'Add to cart'
+                    addToCartButtons.forEach((btn) => {
+                        if (btn.parentElement.parentElement.innerHTML.includes(removeButton.parentElement.parentElement.querySelector('.cart-item__name').innerHTML)) {
+                            btn.innerText = 'Add to cart'
+                        }
+                    })
                     checkCart()
                     totalPrice()
                 })
@@ -181,6 +201,7 @@ addToCartButtons.forEach((button) => {
         }
         checkCart()
         totalPrice()
+        amountUpAndDownButtons()
     })
 })
 
@@ -213,7 +234,172 @@ window.addEventListener('load', () => {
         checkCart()
         totalPrice()
     }
+    amountUpAndDownButtons()
+
+    addToCartButtons.forEach((button) => {
+        if (cartItems.innerHTML.includes(button.parentElement.parentElement.querySelector('.item__name').innerHTML)) {
+            button.innerText = 'Added'
+        }
+    })
 })
 
 checkCart()
 totalPrice()
+
+// ______________________________________________________________
+// code only for products page
+
+const search = document.querySelector('.products__search-input')
+const allItems = document.querySelectorAll('.products__item')
+const allCompanies = document.querySelectorAll('.company')
+const allCompaniesButton = document.querySelector('.all')
+const priceFilter = document.querySelector('.price__input')
+const error = document.querySelector('.error')
+const productsContent = document.querySelector('.products__content')
+
+
+const priceValueChanger = () => {
+    document.querySelector('.price__value').innerText = `€ ${priceFilter.value}`
+}
+
+
+const priceFilterFunc = () => {
+    if (allCompaniesButton.classList.contains('active')) {
+        allItems.forEach((item) => {
+            const itemPrice = Number(item.querySelector('.item__price').innerText.slice(2))
+            if (priceFilter.value < itemPrice) {
+                item.classList.add('hide')
+            } else {
+                item.classList.remove('hide')
+            }
+        })
+
+        const itemsInSearch = document.querySelectorAll('.products__item')
+
+        for (let i = 0; i < itemsInSearch.length; i++) {
+            if (itemsInSearch[i].classList) {
+                console.log(itemsInSearch[i].classList)
+            }
+        }
+        
+    }
+}
+
+
+const searchFunc = () => {
+    if (allCompaniesButton.classList.contains('active')) {
+        search.addEventListener('input', () => {
+            allItems.forEach((item) => {
+                if (!item.querySelector('.item__name').innerText.toLowerCase().includes(`${search.value.toLowerCase()}`) && !item.querySelector('.item__name').innerText.toLowerCase().startsWith(`${search.value.toLowerCase()}`)) {
+                    item.classList.add('hide')
+                } else {
+                    item.classList.remove('hide')
+                }
+            })
+            
+            const itemsInSearch = document.querySelectorAll('.products__item')
+        
+            const listToChek = []
+        
+            for (let i = 0; i < itemsInSearch.length; i++) {
+                if (itemsInSearch[i].classList.length === 2 && itemsInSearch[i].className.includes('item')) {
+                    listToChek.unshift(itemsInSearch[i])
+                }
+            }
+        
+            if (listToChek.length === 0) {
+                error.classList.remove('hide')
+            } else {
+                error.classList.add('hide')
+        
+            }
+            
+        })
+    } else {}
+}
+ 
+allCompanies.forEach((company) => {
+    company.addEventListener('click', () => {
+        allItems.forEach((item) => {
+            if (company.dataset.company !== item.dataset.company) {
+                item.classList.add('hide')
+            } else {
+                item.classList.remove('hide')
+            }
+
+            if (company.innerText === 'All') {
+                item.classList.remove('hide')
+            }
+        })
+
+        if (company.innerText !== 'All') {
+            allCompaniesButton.classList.remove('active')
+            const searchFunc2 = () => {
+                search.addEventListener('input', () => {
+                    allItems.forEach((item) => {
+                        if (item.dataset.company === company.dataset.company) {
+                            if (!item.querySelector('.item__name').innerText.toLowerCase().includes(`${search.value.toLowerCase()}`) && !item.querySelector('.item__name').innerText.toLowerCase().startsWith(`${search.value.toLowerCase()}`)) {
+                                item.classList.add('hide')
+                            } else {
+                                item.classList.remove('hide')
+                            }
+                        } else {
+                            item.classList.add('hide')
+                        }
+                    })
+
+                    const itemsInSearch = document.querySelectorAll('.products__item')
+                
+                    const listToChek = []
+                
+                    for (let i = 0; i < itemsInSearch.length; i++) {
+                        if (itemsInSearch[i].classList.length === 2 && itemsInSearch[i].className.includes('item')) {
+                            listToChek.unshift(itemsInSearch[i])
+                        }
+                    }
+                
+                    if (listToChek.length === 0) {
+                        error.classList.remove('hide')
+                    } else {
+                        error.classList.add('hide')
+                
+                    }
+                })
+            }
+            searchFunc2()
+
+            const priceFilterFunc2 = () => {
+                allItems.forEach((item) => {
+                    if (item.dataset.company === company.dataset.company) {
+                        const itemPrice = Number(item.querySelector('.item__price').innerText.slice(2))
+                        if (priceFilter.value < itemPrice) {
+                            item.classList.add('hide')
+                        } else {
+                            item.classList.remove('hide')
+                        }
+                    } else {
+                        item.classList.add('hide')
+                    }
+                })
+            }
+            priceFilter.addEventListener('input', () => {
+                if (!allCompaniesButton.classList.contains('active')) {
+                    priceFilterFunc2()
+                }
+            })
+
+        } else if (company.innerText === 'All') {
+            allCompaniesButton.classList.add('active')
+        }
+    })
+})
+
+search.addEventListener('input', () => {
+    searchFunc()
+})
+
+priceFilter.addEventListener('input', () => {
+    priceValueChanger()
+    priceFilterFunc()
+})
+priceValueChanger()

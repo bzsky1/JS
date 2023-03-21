@@ -267,6 +267,7 @@ input[type=range]::-moz-range-thumb {
   z-index: 1;
   display: none;
   flex-direction: column;
+  border-left: 4px solid rgb(127, 179, 24);
 }
 
 .cart__close-btn {
@@ -370,4 +371,19 @@ input[type=range]::-moz-range-thumb {
 }
 .cart__checkout-btn:hover {
   background-color: rgb(127, 179, 24);
+}
+
+.hide {
+  display: none;
+}
+
+.error {
+  align-self: center;
+  margin-left: 75%;
+  width: 400px;
+}
+
+.error__text {
+  font-size: 40px;
+  text-shadow: 3px 1px 3px red;
 }

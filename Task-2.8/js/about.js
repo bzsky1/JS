@@ -114,7 +114,6 @@ cartButton.addEventListener('click', () => {
     })
 
     removeButton()
-    amountUpAndDownButtons()
 })
 
 
@@ -213,6 +212,7 @@ window.addEventListener('load', () => {
         checkCart()
         totalPrice()
     }
+    amountUpAndDownButtons()
 })
 
 checkCart()

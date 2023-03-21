@@ -46,6 +46,7 @@
                         <div class="companies">
                             <h3 class="companies__title">Companies</h3>
                             <ul class="companies__list">
+                                <li class="company all active">All</li>
                                 <li class="company" data-company="bataleon">Bataleon</li>
                                 <li class="company" data-company="burton">Burton</li>
                                 <li class="company" data-company="capita">Capita</li>
@@ -56,11 +57,14 @@
                         </div>
                         <div class="price">
                             <h3 class="price__title">Price</h3>
-                            <input type="range" min="150" max="600" step="10" value="" class="price__input">
+                            <input type="range" min="150" max="600" step="10" value="600" class="price__input">
                             <div class="price__value">€ 150</div>
                         </div>
                     </div>
                     <div class="products__content">
+                        <div class="error hide">
+                            <div class="error__text">No matches found!</div>
+                        </div>
                         <div class="products__item item" data-company="bataleon">
                             <div class="item__img">
                                 <img src="products images/bataleon-blow-snowboard-2023.png" class="img">
@@ -85,7 +89,7 @@
                             <div class="item__name">Bataleon Chaser 2023</div>
                             <div class="item__price">€ 329.95</div>
                         </div>
-                        <div class="products__item item">
+                        <div class="products__item item" data-company="burton">
                             <div class="item__img">
                                 <img src="products images/burton-family-tree-panhandler-snowboard-2018_4.png" class="img">
                                 <div class="item__add-button">Add to cart</div>
