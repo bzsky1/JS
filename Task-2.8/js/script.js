@@ -8,12 +8,22 @@ let itemsInCartLS = []
 
 
 const checkCart = () => {
-    let listOfItemsInCart = cartItems.querySelectorAll('.cart-item')
+    const listOfItemsInCart = cartItems.querySelectorAll('.cart-item')
+    let listOfAmountsOfItems = cartItems.querySelectorAll('.cart-item__amount-digit')
+
+    list = []
+
+    for (let i = 0; i < listOfAmountsOfItems.length; i++) {
+        list.unshift(Number(listOfAmountsOfItems[i].innerText))
+    }
+
     if (listOfItemsInCart.length === 0) {
         cartInside.style.display = 'none'
     } else {
         cartInside.style.display = 'block'
-        cartInside.innerText = listOfItemsInCart.length
+        cartInside.innerText = list.reduce((a, b) => {
+            return a + b
+        })
     }
 }
 
@@ -87,10 +97,10 @@ const amountUpAndDownButtons = () => {
                 localStorage.setItem('items', JSON.stringify(itemsInCartLS))
     
                 total.innerText = `Total: € ${(Number(total.innerText.slice(8)) + Number(itemPrice.innerText.slice(2))).toFixed(2)}`
+
+                checkCart()
             })
         }
-
-
     })
 
     cartItemAmountDownButtons.forEach((button) => {
@@ -114,6 +124,7 @@ const amountUpAndDownButtons = () => {
     
                     total.innerText = `Total: € ${(Number(total.innerText.slice(8)) - Number(itemPrice.innerText.slice(2))).toFixed(2)}`
                 }
+                checkCart()
             })
         }
     })
